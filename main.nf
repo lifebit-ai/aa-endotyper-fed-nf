@@ -16,7 +16,7 @@ process RUN_ENDOTYPER {
     
     script:
     """
-    Rscript ${projectDir}/bin/endotype.R ${person_tsv} ${measure_csv}
+    endotype.R ${person_tsv} ${measure_csv}
     """
 }
 
