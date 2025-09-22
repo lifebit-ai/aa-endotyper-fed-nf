@@ -1,0 +1,8 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- bioconda::bioconductor-complexheatmap=2.22.0
+- conda-forge::r-janitor=2.2.1
+- bioconda::r-tidyheatmap
+- conda-forge::r-tidyverse=2.0.0
