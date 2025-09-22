@@ -23,8 +23,8 @@ process RUN_ENDOTYPER {
 // Main workflow
 workflow {
     // Check if file parameters are provided
-    if (!params.case_cohort) {
-        error "Please provide case_cohort parameter"
+    if (!params.demographic_info_csv) {
+        error "Please provide demographic_info_csv parameter"
     }
     
     if (!params.measure_info_csv) {
@@ -32,7 +32,7 @@ workflow {
     }
     
     // Create channels from the file paths
-    person_tsv_ch = Channel.fromPath(params.case_cohort, checkIfExists: true)
+    person_tsv_ch = Channel.fromPath(params.demographic_info_csv, checkIfExists: true)
     measure_csv_ch = Channel.fromPath(params.measure_info_csv, checkIfExists: true)
     
     // Run the processes
