@@ -10,6 +10,7 @@ RUN apt-get clean && \
     libopenblas-dev \
     python3-dev \
     git \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up Python environment

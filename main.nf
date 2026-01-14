@@ -22,7 +22,7 @@ process CNN_LOCAL {
     mkdir -p models figures/pdf figures/html test_data
     
     # Create a generic local CNN script that works with single study
-    python3 ${projectDir}/bin/CNN_Local_Single_Study.py \
+    python3 CNN_Local_Single_Study.py \
         --study_id ${study_id} \
         --study_feature ${study_tidy_file} \
         --study_cpeptide ${cpeptide_file} \
