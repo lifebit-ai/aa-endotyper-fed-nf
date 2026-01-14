@@ -35,9 +35,6 @@ process CNN_LOCAL {
 // Main workflow - Generic single study local CNN training
 workflow {
     // Input validation
-    if (!params.study_id) {
-        error "Please provide --study_id parameter"
-    }
     if (!params.study_tidy_file) {
         error "Please provide --study_tidy_file parameter"
     }
@@ -46,9 +43,15 @@ workflow {
     }
     
     // Create channels from input parameters
-    study_id_ch = Channel.value(params.study_id)
     study_tidy_ch = Channel.fromPath(params.study_tidy_file, checkIfExists: true)
     cpeptide_ch = Channel.fromPath(params.cpeptide_file, checkIfExists: true)
+    
+    // Extract study_id from the tidy file name (e.g., SDY1625_tidy.csv -> SDY1625)
+    study_id_ch = study_tidy_ch.map { file -> 
+        def filename = file.getBaseName()
+        def study_id = filename.replaceAll('_tidy$', '')
+        return study_id
+    }
     
     // Run local CNN analysis for the specified study
     CNN_LOCAL(
